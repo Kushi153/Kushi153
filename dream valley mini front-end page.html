@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dream Valley Resort</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <style>
+    body {
+      background: #0f172a;
+      color: white;
+      font-family: sans-serif;
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+    }
+    .neon-button {
+      background-color: #00ffaa;
+      color: black;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #00ffaa, 0 0 20px #00ffaa;
+      transition: transform 0.3s ease;
+      display: inline-block;
+    }
+    .neon-button:hover {
+      transform: scale(1.05);
+    }
+    .room-box {
+      background: #1e293b;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #00ffaa33;
+    }
+    img.gallery-img {
+      width: 250px;
+      margin: 10px;
+      border-radius: 10px;
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+    }
+    .active {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #00ffaa;
+    }
+    iframe.reel-frame {
+      width: 300px;
+      height: 480px;
+      border: none;
+      border-radius: 10px;
+      margin: 10px;
+      box-shadow: 0 0 15px #00ffaa44;
+    }
+    footer {
+      margin-top: 40px;
+      background: #1e293b;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    footer a {
+      color: #00ffaa;
+      text-decoration: none;
+    }
+    footer h3 {
+      color: white;
+    }
+    .footer-section {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🌿 Dream Valley Resort</h1>
+<p>Luxury Nature Stay | Maredumilli</p>
+
+<h2>🛏️ Room Options</h2>
+<div class="room-box">
+  <h3>Single Cot Room</h3>
+  <p>₹3500 (4 persons) + ₹500 per extra person</p>
+  <a id="singleCot" class="neon-button" target="_blank">Book Single Cot</a>
+</div>
+<div class="room-box">
+  <h3>Double Cot Room</h3>
+  <p>₹4500 (4 persons) + ₹500 per extra person</p>
+  <a id="doubleCot" class="neon-button" target="_blank">Book Double Cot</a>
+</div>
+<h2>📆 Select the date</h2>
+<input type="text" id="date" placeholder="Select the date" />
+
+<h2>🎞️ Insta Reels</h2>
+<div style="display:flex; overflow-x:auto;">
+  <iframe class="reel-frame" src="https://www.instagram.com/reel/C1Yv0wmJUML/embed" allowfullscreen></iframe>
+  <iframe class="reel-frame" src="https://www.instagram.com/reel/C1dRHy6ycvM/embed" allowfullscreen></iframe>
+  <iframe class="reel-frame" src="https://www.instagram.com/reel/C1s3dm4J7T9/embed" allowfullscreen></iframe>
+  <iframe class="reel-frame" src="https://www.instagram.com/p/C1dNhVWS2Gn/embed" allowfullscreen></iframe>
+</div>
+
+<h2>🌄 Resort Gallery</h2>
+<div style="display:flex; overflow-x:auto;">
+  <img src="https://ik.imagekit.io/l9ay2hb8a/IMG-20250607-WA0015.jpg?updatedAt=1749272125588" class="gallery-img" />
+  <img src="https://ik.imagekit.io/l9ay2hb8a/IMG-20250607-WA0031.jpg?updatedAt=1749272430859" class="gallery-img" />
+  <img src="https://ik.imagekit.io/l9ay2hb8a/IMG-20250607-WA0017.jpg?updatedAt=1749272455876" class="gallery-img" />
+  <img src="https://ik.imagekit.io/l9ay2hb8a/IMG-20250607-WA0028.jpg?updatedAt=1749272478133" class="gallery-img" />
+</div>
+
+<h2>🎥 Walkthrough Video</h2>
+<video controls width="320" class="gallery-img scroll-video">
+  <source src="https://ik.imagekit.io/l9ay2hb8a/VID-20250607-WA0035.mp4?updatedAt=1749272543100" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+<footer>
+  <div class="footer-section">
+    <h3>Quick Links</h3>
+    <p>📍 <a href="https://maps.app.goo.gl/jcWmxUQKecL2NdEq6" target="_blank">Google Maps</a></p>
+    <p>📸 <a href="https://www.instagram.com/happytrailresort_maredumilli" target="_blank">Instagram</a></p>
+  </div>
+  <div class="footer-section">
+    <h3>About</h3>
+    <p>Eco-Friendly | Family Friendly | Luxury Nature Getaway</p>
+    <p>"A little heaven hidden in nature 🌲 — Dream Valley"</p>
+  </div>
+  <div class="footer-section">
+    <p>© 2025 Dream Valley Resort | 📞 8712888677 / 9492163297</p>
+    <p>💌 Email: <a href="mailto:bkushirt@gmail.com">bkushirt@gmail.com</a></p>
+    <p>Created by <a href="https://www.instagram.com/mr_unique_killer_333" target="_blank">@Ravi Teja (Kushi)</a></p>
+  </div>
+</footer>
+
+<script>
+  let selectedDate = "";
+  flatpickr("#date", {
+    dateFormat: "F j, Y",
+    minDate: "today",
+    onChange: function(selectedDates, dateStr) {
+      selectedDate = dateStr;
+      updateLinks();
+    }
+  });
+
+  function updateLinks() {
+    const msgSingle = `Hi, I want to book the Single Cot Room on ${selectedDate}. Can you help me sir?`;
+    const msgDouble = `Hi, I want to book the Double Cot Room on ${selectedDate}. Can you help me sir?`;
+    const encoded1 = encodeURIComponent(msgSingle);
+    const encoded2 = encodeURIComponent(msgDouble);
+    const phone = "9492163297";
+    document.getElementById("singleCot").href = `https://wa.me/91${phone}?text=${encoded1}`;
+    document.getElementById("doubleCot").href = `https://wa.me/91${phone}?text=${encoded2}`;
+  }
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      entry.target.classList.toggle("active", entry.isIntersecting);
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll(".gallery-img, .scroll-video").forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
