@@ -1,1 +1,258 @@
-dream valley.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dream Valley Resort</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <style>
+    body {
+      background: #0f172a;
+      color: white;
+      font-family: sans-serif;
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+    }
+    .neon-button {
+      background-color: #00ffaa;
+      color: black;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #00ffaa, 0 0 20px #00ffaa;
+      transition: transform 0.3s ease;
+      display: inline-block;
+    }
+    .neon-button:hover {
+      transform: scale(1.05);
+    }
+    .room-box {
+      background: #1e293b;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #00ffaa33;
+    }
+    img.gallery-img {
+      width: 250px;
+      height: 350px;
+      object-fit: cover;
+      margin: 10px;
+      border-radius: 10px;
+      transition: all 0.4s ease;
+      cursor: pointer;
+    }
+    .gallery-img.zoomed {
+      transform: scale(2);
+      z-index: 100;
+      position: relative;
+      box-shadow: 0 0 30px #00ffaa;
+    }
+    iframe.reel-frame {
+      width: 300px;
+      height: 480px;
+      border: none;
+      border-radius: 10px;
+      margin: 10px;
+      box-shadow: 0 0 15px #00ffaa44;
+      transition: all 0.3s ease;
+    }
+    iframe.reel-frame:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 25px #00ffaa;
+    }
+    .media-container {
+      display: flex;
+      overflow-x: auto;
+      padding: 15px 5px;
+    }
+    footer {
+      margin-top: 40px;
+      background: #1e293b;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    footer a {
+      color: #00ffaa;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    footer a:hover {
+      text-shadow: 0 0 10px #00ffaa;
+    }
+    .footer-section {
+      margin-bottom: 20px;
+    }
+    .contact-options {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 10px 0;
+    }
+    .contact-option {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 8px 12px;
+      background: rgba(0, 255, 170, 0.1);
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    .contact-option:hover {
+      background: rgba(0, 255, 170, 0.2);
+      transform: translateY(-3px);
+    }
+    .instagram-icon {
+      color: #E1306C;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🌿 Dream Valley Resort</h1>
+<p>Luxury Nature Stay | Maredumilli</p>
+
+<!-- Room Booking Section -->
+<h2>🛏️ Room Options</h2>
+<div class="room-box">
+  <h3>Single Cot Room</h3>
+  <p>₹3500 (4 persons) + ₹500 per extra person</p>
+  <a id="singleCot" class="neon-button" target="_blank">Book Single Cot</a>
+</div>
+<div class="room-box">
+  <h3>Double Cot Room</h3>
+  <p>₹4500 (4 persons) + ₹500 per extra person</p>
+  <a id="doubleCot" class="neon-button" target="_blank">Book Double Cot</a>
+</div>
+
+<!-- Date Picker -->
+<h2>📆 Select the date</h2>
+<input type="text" id="date" placeholder="Select the date" />
+
+<!-- Instagram Reels -->
+<h2>🎞️ Insta Reels</h2>
+<div class="media-container">
+  <iframe class="reel-frame" src="https://www.instagram.com/reel/C1Yv0wmJUML/embed" allowfullscreen></iframe>
+  <iframe class="reel-frame" src="https://www.instagram.com/reel/C1dRHy6ycvM/embed" allowfullscreen></iframe>
+  <iframe class="reel-frame" src="https://www.instagram.com/reel/C1s3dm4J7T9/embed" allowfullscreen></iframe>
+</div>
+
+<!-- Gallery with 3rd Image Removed -->
+<h2>🌄 Resort Gallery</h2>
+<div class="media-container">
+  <img src="https://ik.imagekit.io/l9ay2hb8a/IMG-20250607-WA0015.jpg" class="gallery-img" alt="Resort view 1" />
+  <img src="https://ik.imagekit.io/l9ay2hb8a/IMG-20250607-WA0023(1).jpg" class="gallery-img" alt="Resort view 2" />
+  <img src="https://ik.imagekit.io/l9ay2hb8a/IMG-20250607-WA0031.jpg" class="gallery-img" alt="Resort view 4" />
+  <img src="https://ik.imagekit.io/l9ay2hb8a/IMG-20250607-WA0017.jpg" class="gallery-img" alt="Resort view 5" />
+</div>
+
+<!-- Video -->
+<h2>🎥 Walkthrough Video</h2>
+<video controls width="100%" class="gallery-img" style="max-width:600px; display:block; margin:0 auto;">
+  <source src="https://ik.imagekit.io/l9ay2hb8a/VID-20250607-WA0035.mp4" type="video/mp4" />
+</video>
+
+<!-- Updated Footer -->
+<footer>
+  <div class="footer-section">
+    <h3>Quick Links</h3>
+    <p>📍 <a href="https://maps.google.com/?q=17.6101904,81.7188524" target="_blank">Google Maps</a></p>
+    <p><i class="fab fa-instagram instagram-icon"></i> <a href="https://www.instagram.com/happytrailresort_maredumilli" target="_blank">Instagram</a></p>
+  </div>
+  
+  <div class="footer-section">
+    <h3>Contact</h3>
+    <div class="contact-options">
+      <div class="contact-option">
+        <i class="fas fa-phone"></i>
+        <span>9492163297</span>
+      </div>
+      <a href="https://wa.me/919492163297" target="_blank" class="contact-option">
+        <i class="fab fa-whatsapp" style="color: #25D366;"></i>
+        <span>WhatsApp</span>
+      </a>
+    </div>
+    <div class="contact-options">
+      <div class="contact-option">
+        <i class="fas fa-phone"></i>
+        <span>8712888677</span>
+      </div>
+      <a href="https://wa.me/918712888677" target="_blank" class="contact-option">
+        <i class="fab fa-whatsapp" style="color: #25D366;"></i>
+        <span>WhatsApp</span>
+      </a>
+    </div>
+    <p>💌 <a href="mailto:bkushirt@gmail.com">bkushirt@gmail.com</a></p>
+  </div>
+  
+  <div class="footer-section">
+    <p>© 2025 Dream Valley Resort</p>
+    <p>Created by <a href="https://www.instagram.com/mr_unique_killer_333" target="_blank">@Ravi Teja</a></p>
+  </div>
+</footer>
+
+<script>
+  // Booking System
+  flatpickr("#date", {
+    dateFormat: "F j, Y",
+    minDate: "today",
+    onChange: function(_, dateStr) {
+      const msg = (roomType) => 
+        `Hi, I want to book ${roomType} on ${dateStr}. Please confirm.`;
+      
+      document.getElementById("singleCot").href = 
+        `https://wa.me/919492163297?text=${encodeURIComponent(msg("Single Cot Room"))}`;
+      
+      document.getElementById("doubleCot").href = 
+        `https://wa.me/919492163297?text=${encodeURIComponent(msg("Double Cot Room"))}`;
+    }
+  });
+
+  // Gallery Zoom
+  document.querySelectorAll(".gallery-img").forEach(img => {
+    img.addEventListener("click", function() {
+      document.querySelectorAll(".gallery-img").forEach(i => {
+        if(i !== this) i.classList.remove("zoomed");
+      });
+      this.classList.toggle("zoomed");
+    });
+  });
+
+  // Close zoom when clicking outside
+  document.addEventListener("click", (e) => {
+    if(!e.target.classList.contains("gallery-img")) {
+      document.querySelectorAll(".gallery-img").forEach(img => {
+        img.classList.remove("zoomed");
+      });
+    }
+  });
+
+  // Auto-pause Media
+  new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      // Videos
+      if (entry.target.tagName === "VIDEO") {
+        entry.isIntersecting ? entry.target.play() : entry.target.pause();
+      }
+      // Instagram Reels
+      if (entry.target.classList.contains("reel-frame") && !entry.isIntersecting) {
+        entry.target.src = entry.target.src; // Force reload to "pause"
+      }
+    });
+  }, { threshold: 0.5 }).observe(document.querySelector("video"));
+
+  // Make phone numbers clickable
+  document.querySelectorAll(".contact-option:not(a)").forEach(el => {
+    el.addEventListener("click", function() {
+      const phone = this.querySelector("span").textContent.trim();
+      window.location.href = `tel:${phone}`;
+    });
+    el.style.cursor = "pointer";
+  });
+</script>
+</body>
+</html>
