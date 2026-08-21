@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ravi Teja Buddha (Kushi) | Elite AI & Data Science Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Three.js Library for 3D Graphics Engine -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- FontAwesome Pro Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;700&display=swap');
+        
+        :root {
+            --bg-deep: #02040a;
+            --accent-cyan: #00f0ff;
+            --accent-purple: #7000ff;
+            --accent-pink: #ff007b;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-deep);
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+
+        .font-mono {
+            font-family: 'Fira Code', monospace;
+        }
+
+        #webgl-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .glass-panel {
+            background: rgba(10, 15, 30, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+        }
+
+        .glass-panel-glow {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.1);
+        }
+
+        .gradient-headline {
+            background: linear-gradient(135deg, #00f0ff 0%, #a855f7 50%, #ff007b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .grid-pattern {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #02040a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 5px;
+            border: 2px solid #02040a;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00f0ff;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+
+        .animate-glow {
+            animation: pulseGlow 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="grid-pattern selection:bg-cyan-500 selection:text-black">
+
+    <!-- 3D WebGL Canvas Container -->
+    <div id="webgl-container">
+        <canvas id="webgl-canvas"></canvas>
+    </div>
+
+    <!-- Advanced HUD Navigation System -->
+    <header class="fixed top-0 left-0 w-full z-50 px-6 py-4">
+        <div class="max-w-7xl mx-auto glass-panel rounded-2xl px-6 py-3 flex justify-between items-center transition-all duration-300">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 via-purple-600 to-pink-600 flex items-center justify-center font-bold text-xl shadow-lg shadow-cyan-500/30 text-white">
+                    K
+                </div>
+                <div>
+                    <span class="font-extrabold text-sm md:text-base tracking-widest block gradient-headline">RAVI TEJA (KUSHI)</span>
+                    <span class="text-[10px] font-mono text-cyan-400 tracking-wider block">AI_ENGINEER_v4.2</span>
+                </div>
+            </div>
+
+            <nav class="hidden md:flex space-x-8 text-sm font-semibold tracking-wide text-gray-300">
+                <a href="#about" class="hover:text-cyan-400 transition-colors flex items-center space-x-1"><span class="text-cyan-500 font-mono text-xs">01.</span><span>About</span></a>
+                <a href="#skills" class="hover:text-cyan-400 transition-colors flex items-center space-x-1"><span class="text-cyan-500 font-mono text-xs">02.</span><span>Skill Matrix</span></a>
+                <a href="#projects" class="hover:text-cyan-400 transition-colors flex items-center space-x-1"><span class="text-cyan-500 font-mono text-xs">03.</span><span>Pipelines</span></a>
+                <a href="#contact" class="hover:text-cyan-400 transition-colors flex items-center space-x-1"><span class="text-cyan-500 font-mono text-xs">04.</span><span>Contact</span></a>
+            </nav>
+
+            <div class="flex items-center space-x-4">
+                <a href="https://www.linkedin.com/in/raviteja-buddha-7a9279244" target="_blank" class="hidden sm:flex items-center space-x-2 px-4 py-2 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-mono text-xs hover:bg-cyan-500 hover:text-black transition-all">
+                    <i class="fa-brands fa-linkedin text-sm"></i>
+                    <span>CONNECT</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Matrix Section -->
+    <section class="min-h-screen flex items-center justify-center px-6 pt-28 pb-16 relative">
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-500/15 rounded-full blur-[120px] pointer-events-none animate-glow"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/15 rounded-full blur-[120px] pointer-events-none animate-glow" style="animation-delay: 3s;"></div>
+
+        <div class="max-w-5xl mx-auto text-center glass-panel p-8 md:p-16 rounded-3xl relative z-10">
+            <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full text-xs font-mono font-medium bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 mb-6">
+                <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+                <span>SYSTEM ONLINE: DATA SCIENCE & MACHINE LEARNING</span>
+            </div>
+
+            <h1 class="text-4xl md:text-7xl font-black tracking-tight mb-6 leading-tight">
+                Engineering Intelligence <br><span class="gradient-headline">Through Advanced Data Models</span>
+            </h1>
+
+            <p class="text-gray-400 text-base md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-light">
+                Specialized in building high-performance machine learning pipelines, deep predictive analytics systems, and scalable AI infrastructure.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#projects" class="px-8 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-bold tracking-wide hover:scale-105 transition-all shadow-xl shadow-cyan-500/25">
+                    Explore Pipelines <i class="fa-solid fa-arrow-right ml-2"></i>
+                </a>
+                <a href="https://www.kaggle.com/kushi00" target="_blank" class="px-8 py-4 rounded-2xl glass-panel text-gray-200 font-bold tracking-wide hover:border-cyan-500 transition-all flex items-center space-x-2">
+                    <i class="fa-brands fa-kaggle text-cyan-400"></i>
+                    <span>Kaggle Profile</span>
+                </a>
+            </div>
+
+            <!-- Quick Telemetry Stats Bar -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-8 border-t border-gray-800/80 font-mono text-xs text-gray-400">
+                <div>
+                    <span class="block text-cyan-400 text-lg font-bold">100%</span>
+                    <span>CODE PRECISION</span>
+                </div>
+                <div>
+                    <span class="block text-purple-400 text-lg font-bold">Python/SQL</span>
+                    <span>CORE STACK</span>
+                </div>
+                <div>
+                    <span class="block text-pink-400 text-lg font-bold">PyTorch/TF</span>
+                    <span>DEEP LEARNING</span>
+                </div>
+                <div>
+                    <span class="block text-emerald-400 text-lg font-bold">Active</span>
+                    <span>STATUS</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 px-6 max-w-6xl mx-auto relative z-10">
+        <div class="glass-panel p-8 md:p-12 rounded-3xl">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="text-cyan-400 font-mono text-xs uppercase tracking-widest block">// 01. BACKGROUND</span>
+                    <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight">Driven by Data, Formulated for Impact.</h2>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        I am Ravi Teja Buddha (Kushi), an ambitious Data Science and AI practitioner focused on transforming chaotic, unstructured datasets into clean, actionable intelligence.
+                    </p>
+                    <div class="space-y-3 font-mono text-xs text-gray-300">
+                        <div class="flex items-center space-x-3"><i class="fa-solid fa-phone text-cyan-400"></i><span>+91 9703504923</span></div>
+                        <div class="flex items-center space-x-3"><i class="fa-solid fa-envelope text-cyan-400"></i><span>bkushirt@gmail.com</span></div>
+                        <div class="flex items-center space-x-3"><i class="fa-solid fa-location-dot text-cyan-400"></i><span>India</span></div>
+                    </div>
+                </div>
+                <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="glass-panel p-6 rounded-2xl border-l-4 border-cyan-400">
+                        <div class="text-cyan-400 text-2xl mb-3"><i class="fa-solid fa-brain"></i></div>
+                        <h3 class="font-bold text-base mb-1">Machine Learning</h3>
+                        <p class="text-xs text-gray-400">Supervised, unsupervised clustering, regression analysis, and hyperparameter tuning.</p>
+                    </div>
+                    <div class="glass-panel p-6 rounded-2xl border-l-4 border-purple-500">
+                        <div class="text-purple-400 text-2xl mb-3"><i class="fa-solid fa-chart-line"></i></div>
+                        <h3 class="font-bold text-base mb-1">Exploratory Analysis</h3>
+                        <p class="text-xs text-gray-400">Deep statistical EDA, feature scaling, imputation, and multi-collinearity reduction.</p>
+                    </div>
+                    <div class="glass-panel p-6 rounded-2xl border-l-4 border-pink-500">
+                        <div class="text-pink-400 text-2xl mb-3"><i class="fa-solid fa-network-wired"></i></div>
+                        <h3 class="font-bold text-base mb-1">Deep Neural Nets</h3>
+                        <p class="text-xs text-gray-400">TensorFlow and PyTorch network architectures for complex predictive classification.</p>
+                    </div>
+                    <div class="glass-panel p-6 rounded-2xl border-l-4 border-emerald-400">
+                        <div class="text-emerald-400 text-2xl mb-3"><i class="fa-solid fa-terminal"></i></div>
+                        <h3 class="font-bold text-base mb-1">MLOps & Git</h3>
+                        <p class="text-xs text-gray-400">Version control, containerized workflows, Linux environments, and clean code principles.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skill Matrix Section -->
+    <section id="skills" class="py-24 px-6 max-w-6xl mx-auto relative z-10">
+        <div class="text-center mb-16">
+            <span class="text-cyan-400 font-mono text-xs uppercase tracking-widest block mb-2">// 02. TECHNICAL MATRIX</span>
+            <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight">Core Competencies & Frameworks</h2>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="glass-panel p-6 rounded-2xl text-center group hover:border-cyan-400 transition-all">
+                <div class="text-4xl text-cyan-400 mb-3 group-hover:scale-110 transition-transform"><i class="fa-brands fa-python"></i></div>
+                <h3 class="font-bold text-sm mb-1">Python Programming</h3>
+                <span class="text-[10px] font-mono text-gray-500">Advanced Syntax & OOP</span>
+            </div>
+            <div class="glass-panel p-6 rounded-2xl text-center group hover:border-purple-500 transition-all">
+                <div class="text-4xl text-purple-400 mb-3 group-hover:scale-110 transition-transform"><i class="fa-solid fa-database"></i></div>
+                <h3 class="font-bold text-sm mb-1">Pandas & NumPy</h3>
+                <span class="text-[10px] font-mono text-gray-500">Data Manipulation</span>
+            </div>
+            <div class="glass-panel p-6 rounded-2xl text-center group hover:border-pink-500 transition-all">
+                <div class="text-4xl text-pink-400 mb-3 group-hover:scale-110 transition-transform"><i class="fa-solid fa-chart-pie"></i></div>
+                <h3 class="font-bold text-sm mb-1">Scikit-Learn</h3>
+                <span class="text-[10px] font-mono text-gray-500">Predictive Modeling</span>
+            </div>
+            <div class="glass-panel p-6 rounded-2xl text-center group hover:border-emerald-400 transition-all">
+                <div class="text-4xl text-emerald-400 mb-3 group-hover:scale-110 transition-transform"><i class="fa-brands fa-git-alt"></i></div>
+                <h3 class="font-bold text-sm mb-1">Git & GitHub</h3>
+                <span class="text-[10px] font-mono text-gray-500">Source Control</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 px-6 max-w-6xl mx-auto relative z-10">
+        <div class="text-center mb-16">
+            <span class="text-cyan-400 font-mono text-xs uppercase tracking-widest block mb-2">// 03. ENGINEERING PIPELINES</span>
+            <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight">Featured Data Science Works</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Project 1 -->
+            <div class="glass-panel p-8 rounded-3xl flex flex-col justify-between group hover:border-cyan-400 transition-all">
+                <div>
+                    <div class="flex justify-between items-center mb-6">
+                        <span class="text-cyan-400 text-2xl"><i class="fa-solid fa-chart-column"></i></span>
+                        <span class="text-[10px] font-mono px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">PIPELINE</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Predictive Analytics Engine</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-6">End-to-end data pipeline managing data imputation, robust feature scaling, and high-accuracy model optimization.</p>
+                </div>
+                <div class="pt-4 border-t border-gray-800 flex items-center justify-between">
+                    <span class="text-[10px] font-mono text-gray-500">Python • Scikit-Learn</span>
+                    <a href="https://github.com/Kushi153" target="_blank" class="text-cyan-400 hover:text-cyan-300 font-mono text-xs flex items-center space-x-1">
+                        <span>REPOSITORY</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="glass-panel p-8 rounded-3xl flex flex-col justify-between group hover:border-purple-500 transition-all">
+                <div>
+                    <div class="flex justify-between items-center mb-6">
+                        <span class="text-purple-400 text-2xl"><i class="fa-solid fa-users-viewfinder"></i></span>
+                        <span class="text-[10px] font-mono px-3 py-1 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20">UNSUPERVISED</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Customer Segmentation Model</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-6">Advanced clustering utilizing K-Means and Principal Component Analysis (PCA) to categorize behavioral consumer trends.</p>
+                </div>
+                <div class="pt-4 border-t border-gray-800 flex items-center justify-between">
+                    <span class="text-[10px] font-mono text-gray-500">Python • Seaborn</span>
+                    <a href="https://github.com/Kushi153" target="_blank" class="text-purple-400 hover:text-purple-300 font-mono text-xs flex items-center space-x-1">
+                        <span>REPOSITORY</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="glass-panel p-8 rounded-3xl flex flex-col justify-between group hover:border-pink-500 transition-all">
+                <div>
+                    <div class="flex justify-between items-center mb-6">
+                        <span class="text-pink-400 text-2xl"><i class="fa-solid fa-comment-nodes"></i></span>
+                        <span class="text-[10px] font-mono px-3 py-1 rounded-full bg-pink-500/10 text-pink-400 border border-pink-500/20">DEEP LEARNING</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">NLP Sentiment Classifier</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-6">Text classification engine leveraging tokenization, vectorization algorithms, and multi-layer neural architectures.</p>
+                </div>
+                <div class="pt-4 border-t border-gray-800 flex items-center justify-between">
+                    <span class="text-[10px] font-mono text-gray-500">TensorFlow • NLTK</span>
+                    <a href="https://github.com/Kushi153" target="_blank" class="text-pink-400 hover:text-pink-300 font-mono text-xs flex items-center space-x-1">
+                        <span>REPOSITORY</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Footer Section -->
+    <footer id="contact" class="py-20 px-6 max-w-4xl mx-auto text-center border-t border-gray-800/80 relative z-10">
+        <span class="text-cyan-400 font-mono text-xs uppercase tracking-widest block mb-2">// 04. CONNECTION PORTAL</span>
+        <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Let's Build Something Extraordinary</h2>
+        <p class="text-gray-400 text-sm mb-8">Reach out directly for AI engineering collaborations or career opportunities.</p>
+        
+        <div class="flex flex-wrap justify-center gap-4 mb-12">
+            <a href="https://www.linkedin.com/in/raviteja-buddha-7a9279244" target="_blank" class="px-6 py-3 rounded-xl glass-panel hover:border-cyan-400 transition-all flex items-center space-x-2 text-cyan-400 text-sm font-semibold">
+                <i class="fa-brands fa-linkedin text-lg"></i> <span>LinkedIn</span>
+            </a>
+            <a href="https://www.kaggle.com/kushi00" target="_blank" class="px-6 py-3 rounded-xl glass-panel hover:border-cyan-400 transition-all flex items-center space-x-2 text-cyan-400 text-sm font-semibold">
+                <i class="fa-brands fa-kaggle text-lg"></i> <span>Kaggle</span>
+            </a>
+            <a href="mailto:bkushirt@gmail.com" class="px-6 py-3 rounded-xl glass-panel hover:border-cyan-400 transition-all flex items-center space-x-2 text-cyan-400 text-sm font-semibold">
+                <i class="fa-solid fa-envelope text-lg"></i> <span>bkushirt@gmail.com</span>
+            </a>
+            <a href="tel:9703504923" class="px-6 py-3 rounded-xl glass-panel hover:border-cyan-400 transition-all flex items-center space-x-2 text-cyan-400 text-sm font-semibold">
+                <i class="fa-solid fa-phone text-lg"></i> <span>+91 9703504923</span>
+            </a>
+        </div>
+        <p class="text-xs text-gray-600 font-mono">© 2026 Ravi Teja Buddha (Kushi). All rights reserved.</p>
+    </footer>
+
+    <!-- Three.js Advanced 3D Particle Matrix Engine -->
+    <script>
+        const canvas = document.getElementById('webgl-canvas');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+        // Generate Dense 3D Particle Field
+        const particlesCount = 2000;
+        const posArray = new Float32Array(particlesCount * 3);
+
+        for(let i = 0; i < particlesCount * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 20;
+        }
+
+        const particleGeometry = new THREE.BufferGeometry();
+        particleGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+
+        const particleMaterial = new THREE.PointsMaterial({
+            size: 0.03,
+            color: 0x00f0ff,
+            transparent: true,
+            opacity: 0.7,
+            blending: THREE.AdditiveBlending
+        });
+
+        const particleMesh = new THREE.Points(particleGeometry, particleMaterial);
+        scene.add(particleMesh);
+
+        camera.position.z = 5;
+
+        // Mouse Parallax Physics Tracker
+        let mouseX = 0;
+        let mouseY = 0;
+        let targetX = 0;
+        let targetY = 0;
+
+        document.addEventListener('mousemove', (event) => {
+            mouseX = (event.clientX - window.innerWidth / 2) / (window.innerWidth / 2);
+            mouseY = (event.clientY - window.innerHeight / 2) / (window.innerHeight / 2);
+        });
+
+        const clock = new THREE.Clock();
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const elapsedTime = clock.getElapsedTime();
+
+            targetX += (mouseX - targetX) * 0.05;
+            targetY += (mouseY - targetY) * 0.05;
+
+            particleMesh.rotation.y = elapsedTime * 0.04 + targetX * 0.4;
+            particleMesh.rotation.x = elapsedTime * 0.02 + targetY * 0.4;
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        // Window Resizing Maintenance
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>
