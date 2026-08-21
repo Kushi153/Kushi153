@@ -3,9 +3,20 @@
 <!-- Dynamic Typing Header Cycling Through Your Greeting and Roles -->
 <img src="https://readme-typing-svg.herokuapp.com?font=Outfit&weight=800&size=26&duration=3500&pause=1000&color=00F0FF&center=true&vCenter=true&width=850&lines=Hii+Raviteja,+Welcome+to+my+profile+❤️;Data+Science+Student+%26+Practitioner;Machine+Learning+Engineer;AI+Systems+Developer;Deep+Learning+%26+Neural+Networks+Explorer;Generative+AI+%26+LLM+Practitioner;MLOps+%26+Data+Engineering+Enthusiast" alt="Typing SVG" />
 
+<h3 align="center">🚀 Data Science Student & AI Practitioner | India</h3>
+
+<p align="center">
+  <img src="https://komarev.com/ghpvc/?username=Kushi153&label=Profile%20views&color=0e75b6&style=flat" alt="Kushi153" />
+  <img src="https://img.shields.io/badge/Level-Data%20Science%20Student-blue?style=flat" />
+  <img src="https://img.shields.io/badge/Focus-ML%20%26%20AI-informational?style=flat" />
+  <img src="https://img.shields.io/badge/Status-Open%20to%20Work-success?style=flat" />
+</p>
+
 </div>
 
 ---
+
+<img align="right" alt="Developer Coding" width="380" src="https://user-images.githubusercontent.com/55389276/140866485-8fb1c876-9a8f-4d6a-98dc-08c4981eaf70.gif"/>
 
 ### ⚡ ABOUT ME & LEARNING TRAJECTORY
 > *"A dedicated Data Science student continuously expanding into advanced Artificial Intelligence, neural architectures, and production-grade engineering."*
@@ -55,7 +66,7 @@
 
 ### 🤝 Connect With Me
 
-<p align="center">
+<p align="left">
   <a href="https://www.linkedin.com/in/raviteja-buddha-7a9279244" target="_blank">
     <img src="https://img.shields.io/badge/LINKEDIN-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" />
   </a>
